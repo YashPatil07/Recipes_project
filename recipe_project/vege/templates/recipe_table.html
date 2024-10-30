@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block start %}
+<header class="mt-4">
+  <a href="/" class="recipe-link ">⬅️ Back to add receipes</a>
+</header>
+    <div class="mt-3">
+        <div class="mx-auto col-6">
+          <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Search Food: </label>
+            <input name="search"  type="text" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        </div>
+    </div>
+    <div class="box mt-5 col-9 mx-auto card p-3">
+    <table class="table mt-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Recipes Name</th>
+            <th scope="col">Recipes Desc</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for recipe in receipes %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{recipe.recipe_name}}</td>
+            <td>{{recipe.recipe_description}}</td>
+            <td><img src="/media/{{recipe.recipe_image}}" style="height:100px"></td>
+            <td><a href="/delete_recipe/{{recipe.id}}"class="btn btn-danger m-2" >Delete</a>
+            <a href="/update_recipe/{{recipe.id}}"class="btn btn-success m-2">Update</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+{% endblock %}      
